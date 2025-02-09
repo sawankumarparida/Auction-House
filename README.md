@@ -1,6 +1,6 @@
-# Title
+# Auction House
 
-Auction House
+Using Model-View-Controller
 
 ## Install
 
