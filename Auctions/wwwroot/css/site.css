@@ -1,5 +1,44 @@
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+/* lightmode */
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  padding: 10px;
+  background-color: rgb(229, 224, 226);
+}
+.nav{
+    background-color: rgba(138, 129, 133, 0.6);
+    border: 1px solid black; 
+}
+.nav-link{
+    color:black;
+}
+.nav-link:hover{
+    color:white;
+}
+
+/* darkmode */
+/* .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
+  margin-bottom: 57px;
 } 
 
 html {
@@ -22,7 +61,6 @@ html {
 }
 
 body {
-  /* margin-bottom: px; */
   padding-top: 70px;
   background-color: rgb(86, 86, 86);
 }
@@ -45,3 +83,13 @@ body {
     position: fixed;
     background-color: #5d5d5d;
 }
+
+.footer {
+  margin-top: auto;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; 
+Vertically center the text there
+} */
