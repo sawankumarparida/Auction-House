@@ -1,5 +1,4 @@
-# Auction House Web Application
-
+# Auction House
 To get started, you can clone the repository and open the solution file in Visual Studio.
 
 ```
