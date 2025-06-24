@@ -67,7 +67,7 @@ html {
 
 body {
   padding-top: 70px;
-  background-color: rgb(86, 86, 86);
+  background-color: rgb(69, 69, 69);
 }
 .nav{
     background-color: rgba(0, 0, 0, 0.6);
@@ -86,7 +86,7 @@ body {
   padding-top: 7px;
   z-index: 999;
     position: fixed;
-    background-color: #5d5d5d;
+    background-color: #373737;
 }
 
 .footer {
