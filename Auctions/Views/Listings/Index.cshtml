@@ -14,7 +14,7 @@
                 <img src="~/Images/@listing.ImagePath" style="max-width: 400px; max-height: 400px;" />
             </div>
             <div class="col col-xs-6 col-lg-7">
-                <h5><a asp-action="Details" asp-route-id="@listing.Id" style="color: black;">@listing.Title</a></h5>
+                <h5><a asp-action="Details" asp-route-id="@listing.Id" style="color: rgb(237, 237, 237);">@listing.Title</a></h5>
                 <div>@listing.Description</div>
                 <div>Bid: $@listing.Price.ToString("N2")</div>
                 <div>Listed by: @listing.User.Email</div>
@@ -32,7 +32,7 @@
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center ">
     <a asp-action="Index"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        class="btn btn-default @prevDisabled">
