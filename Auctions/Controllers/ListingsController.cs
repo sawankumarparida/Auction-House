@@ -2,6 +2,7 @@
 using Auctions.Data.Services;
 using Auctions.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Auctions.Controllers
@@ -132,10 +133,10 @@ namespace Auctions.Controllers
             var listing = await _listingsService.GetById(comment.ListingId);
             return View("Details", listing);
         }
-
-        //// GET: Listings/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
+//
+        // // GET: Listings/Edit/5
+        // public async Task<IActionResult> Edit(int? id)
+        // {
         //    if (id == null || _context.Listings == null)
         //    {
         //        return NotFound();
@@ -148,15 +149,15 @@ namespace Auctions.Controllers
         //    }
         //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", listing.IdentityUserId);
         //    return View(listing);
-        //}
+        // }
 
-        //// POST: Listings/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Price,ImagePath,IsSold,IdentityUserId")] Listing listing)
-        //{
+        // // POST: Listings/Edit/5
+        // // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Price,ImagePath,IsSold,IdentityUserId")] Listing listing)
+        // {
         //    if (id != listing.Id)
         //    {
         //        return NotFound();
@@ -184,11 +185,11 @@ namespace Auctions.Controllers
         //    }
         //    ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", listing.IdentityUserId);
         //    return View(listing);
-        //}
+        // }
 
-        //// GET: Listings/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
+        // // GET: Listings/Delete/5
+        // public async Task<IActionResult> Delete(int? id)
+        // {
         //    if (id == null || _context.Listings == null)
         //    {
         //        return NotFound();
@@ -203,13 +204,13 @@ namespace Auctions.Controllers
         //    }
 
         //    return View(listing);
-        //}
+        // }
 
-        //// POST: Listings/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
+        // // POST: Listings/Delete/5
+        // [HttpPost, ActionName("Delete")]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> DeleteConfirmed(int id)
+        // {
         //    if (_context.Listings == null)
         //    {
         //        return Problem("Entity set 'ApplicationDbContext.Listings'  is null.");
@@ -222,11 +223,11 @@ namespace Auctions.Controllers
 
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
-        //}
+        // }
 
-        //private bool ListingExists(int id)
-        //{
+        // private bool ListingExists(int id)
+        // {
         //  return (_context.Listings?.Any(e => e.Id == id)).GetValueOrDefault();
-        //}
+        // }
     }
 }
