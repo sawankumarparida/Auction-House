@@ -6,25 +6,24 @@
     ViewData["Title"] = "Details";
 }
 
-@if(User.Identity.IsAuthenticated)
+@if(User.Identity != null && User.Identity.IsAuthenticated)
 {
     @if(Model.IsSold ==true)
     {
-        @foreach(var bid in Model.Bids)
+        if (Model.Bids != null)
         {
-            @if(bid.Price == Model.Price)
+            foreach(var bid in Model.Bids)
             {
-                @if(bid.IdentityUserId == userManager.GetUserId(User))
+                if(bid.Price == Model.Price)
                 {
-                    <h5>Congratulations, you are the winner!</h5>
-                }
-                else if (userManager.GetUserId(User) == Model.User.Id)
-                {
-                    <h5>@bid.User.UserName is the winner!</h5>
-                }
-                else
-                {
-                    <h5>Bidding is closed!</h5>
+                    if(bid.IdentityUserId == userManager.GetUserId(User))
+                    {
+                        <h5>Congratulations, you are the winner!</h5>
+                    }
+                    else if (Model.User != null && userManager.GetUserId(User) == Model.User.Id)
+                    {
+                        <h5>@(bid.User != null ? bid.User.UserName : "Unknown user") is the winner!</h5>
+                    }
                 }
             }
         }
@@ -39,7 +38,7 @@
         </div>
         <div class="col col-xs-6 col-lg-7">           
             <div>@Model.Description</div>
-            @if(User.Identity.IsAuthenticated)
+            @if(User.Identity != null && User.Identity.IsAuthenticated)
             {
                 <form asp-action="AddBid" method="post">
                     <div>
@@ -49,15 +48,18 @@
                         <input type="submit" class="btn btn-primary">
                     </div>
                 </form>
-                <p>Bids submitted: @Model.Bids.Count</p>
+                <p>Bids submitted: @(Model.Bids != null ? Model.Bids.Count : 0)</p>
                 <br>
-                @if(userManager.GetUserId(User) == Model.User.Id)
+                @if(Model.User != null && userManager.GetUserId(User) == Model.User.Id)
                 {
-                    @foreach(var bid in Model.Bids)
+                    if (Model.Bids != null)
                     {
-                        <ul style="list-style-type: none;">
-                            @bid.User.UserName bidded $@bid.Price.ToString("N2").
-                        </ul>
+                        foreach(var bid in Model.Bids)
+                        {
+                            <ul style="list-style-type: none;">
+                                @(bid.User != null ? bid.User.UserName : "Unknown user") bidded $@bid.Price.ToString("N2").
+                            </ul>
+                        }
                     }
                 }
             }
@@ -67,14 +69,14 @@
                     Bid: $ <input type="number" min="@Model.Price" step="1" name="Price" placeholder="@Model.Price.ToString("N2")" />
                     <input disabled type="submit" class="btn btn-primary">
                 </div>
-                <p>Bids submitted: @Model.Bids.Count</p>
+                <p>Bids submitted: @(Model.Bids != null ? Model.Bids.Count : 0)</p>
             }
 
-            <div>Listed by: @Model.User.UserName</div>
+            <div>Listed by: @(Model.User != null ? Model.User.UserName : "Unknown user")</div>
 
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity != null && User.Identity.IsAuthenticated)
             {
-                @if (userManager.GetUserId(User) == Model.User.Id)
+                @if (Model.User != null && userManager.GetUserId(User) == Model.User.Id)
                 {
                     @if(Model.IsSold == false)
                     {
@@ -89,7 +91,7 @@
 
 <br>
 
-@if (User.Identity.IsAuthenticated)
+@if (User.Identity != null && User.Identity.IsAuthenticated)
 {
     <div class="container">
         <form asp-action="AddComment" method="post">
@@ -112,11 +114,14 @@ else
 <br>
 <div class="container">
     <h6>Comments</h6>
-    @foreach(var comment in Model.Comments)
+    @if (Model.Comments != null)
     {
-        <div style="border:1px solid lightgray; margin: 10px; padding: 10px; border-radius: 10px; width: 40%;">
-            <p>@comment.Content - @comment.User.UserName</p>
-        </div>
+        foreach(var comment in Model.Comments)
+        {
+            <div style="border:1px solid lightgray; margin: 10px; padding: 10px; border-radius: 10px; width: 40%;">
+                <p>@comment.Content - @(comment.User != null ? comment.User.UserName : "Unknown user")</p>
+            </div>
+        }
     }
 </div>
 
