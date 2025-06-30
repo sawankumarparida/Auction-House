@@ -8,7 +8,7 @@ namespace Auctions.Models
     {
         public int Id { get; set; }
         public required string Title { get; set; }
-        public string Description { get; set; }
+        public required string Description { get; set; }
         public double Price { get; set; }
         public IFormFile Image { get; set; }
         public bool IsSold { get; set; } = false;
