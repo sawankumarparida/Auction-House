@@ -45,7 +45,7 @@
             @Html.DisplayNameFor(model => model.User)
         </dt>
         <dd class = "col-sm-10">
-            @(Model.User?.Id != null ? Html.DisplayFor(model => model.User.Id) : "N/A")
+            @Html.DisplayFor(model => model.User.Id)
         </dd>
     </dl>
     
