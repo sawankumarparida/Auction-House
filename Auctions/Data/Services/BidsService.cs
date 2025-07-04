@@ -20,8 +20,10 @@ namespace Auctions.Data.Services
 
         public IQueryable<Bid> GetAll()
         {
-            var applicationDbContext = from a in _context.Bids.Include(l => l.Listing).ThenInclude(l => l.User)
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+            var applicationDbContext = from a in _context.Bids.Include(l => l.Listing).ThenInclude(static l => l.User)
                                        select a;
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             return applicationDbContext;
         }
     }
