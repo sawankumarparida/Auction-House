@@ -26,13 +26,21 @@ namespace Auctions.Data.Services
 
         public async Task<Listing> GetById(int? id)
         {
+#pragma warning disable CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
+
             var listing = await _context.Listings
                 .Include(l => l.User)
                 .Include(l => l.Comments)
                 .Include(l => l.Bids)
                 .ThenInclude(l => l.User)
                 .FirstOrDefaultAsync(m => m.Id == id);
+#pragma warning restore CS8620 // Argument cannot be used for parameter due to differences in the nullability of reference types.
+
+#pragma warning disable CS8603 // Possible null reference return.
+
             return listing;
+#pragma warning restore CS8603 // Possible null reference return.
+
         }
 
         public async Task SaveChanges()
