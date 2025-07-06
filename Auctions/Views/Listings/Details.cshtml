@@ -12,7 +12,7 @@
     {
         @foreach(var bid in Model?.Bids ?? Enumerable.Empty<Auctions.Models.Bid>())
         {
-            @if(bid.Price == Model.Price)
+            @if(bid.Price == (Model?.Price ?? 0))
             {
                 @if(bid.IdentityUserId == userManager.GetUserId(User))
                 {
