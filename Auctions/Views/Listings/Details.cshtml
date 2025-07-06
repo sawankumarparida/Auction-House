@@ -10,7 +10,7 @@
 {
     @if(Model.IsSold ==true)
     {
-        @foreach(var bid in Model.Bids)
+        @foreach(var bid in Model?.Bids ?? Enumerable.Empty<Auctions.Models.Bid>())
         {
             @if(bid.Price == Model.Price)
             {
