@@ -6,7 +6,7 @@
     ViewData["Title"] = "Details";
 }
 
-@if(User.Identity.IsAuthenticated)
+@if(User?.Identity?.IsAuthenticated == true)
 {
     @if(Model.IsSold ==true)
     {
