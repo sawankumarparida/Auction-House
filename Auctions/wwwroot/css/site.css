@@ -70,13 +70,16 @@ body {
   padding-top: 70px;
   background-color: rgb(86, 86, 86);
 }
+
 .nav{
     background-color: rgba(112, 111, 111, 0.6);
     border: 1px solid rgb(124, 124, 124); 
 }
+
 .nav-link{
     color:rgb(255, 255, 255);
 }
+
 .nav-link:hover{
     color:white;
 }
