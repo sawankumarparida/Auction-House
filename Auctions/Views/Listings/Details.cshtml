@@ -70,7 +70,7 @@
                 <p>Bids submitted: @Model?.Bids?.Count</p>
             }
 
-            <div>Listed by: @Model.User?.UserName</div>
+            <div>Listed by: @Model?.User?.UserName</div>
 
             @if (User.Identity.IsAuthenticated)
             {
