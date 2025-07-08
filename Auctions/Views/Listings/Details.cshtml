@@ -38,20 +38,20 @@
             <img src="~/Images/@Model?.ImagePath" style="width: 100%; max-height: 60vh;" />
         </div>
         <div class="col col-xs-6 col-lg-7">           
-            <div>@Model.Description</div>
+            <div>@Model?.Description</div>
             @if(User.Identity.IsAuthenticated)
             {
                 <form asp-action="AddBid" method="post">
                     <div>
-                        Bid: $ <input type="number" min="@Model.Price" step="1" name="Price" placeholder="@Model.Price.ToString("N2")"/>
+                        Bid: $ <input type="number" min="@Model?.Price" step="1" name="Price" placeholder="@Model?.Price.ToString("N2")"/>
                         <input type="hidden" name="IdentityUserId" class="form-control" value="@userManager.GetUserId(User)"/>
-                        <input type="hidden" name="ListingId" class="form-control" value="@Model.Id" />
+                        <input type="hidden" name="ListingId" class="form-control" value="@Model?.Id" />
                         <input type="submit" class="btn btn-primary">
                     </div>
                 </form>
-                <p>Bids submitted: @Model.Bids.Count</p>
+                <p>Bids submitted: @Model?.Bids?.Count</p>
                 <br>
-                @if(userManager.GetUserId(User) == Model.User?.Id)
+                @if(userManager.GetUserId(User) == Model?.User?.Id)
                 {
                     @foreach(var bid in Model.Bids)
                     {
@@ -64,10 +64,10 @@
             else
             {
                 <div>
-                    Bid: $ <input type="number" min="@Model.Price" step="1" name="Price" placeholder="@Model.Price.ToString("N2")" />
+                    Bid: $ <input type="number" min="@Model?.Price" step="1" name="Price" placeholder="@Model?.Price.ToString("N2")" />
                     <input disabled type="submit" class="btn btn-primary">
                 </div>
-                <p>Bids submitted: @Model.Bids?.Count</p>
+                <p>Bids submitted: @Model?.Bids?.Count</p>
             }
 
             <div>Listed by: @Model.User?.UserName</div>
