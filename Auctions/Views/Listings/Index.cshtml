@@ -17,7 +17,7 @@
                 <h5><a asp-action="Details" asp-route-id="@listing.Id" style="color: rgb(237, 237, 237);">@listing.Title</a></h5>
                 <div>@listing.Description</div>
                 <div>Bid: $@listing.Price.ToString("N2")</div>
-                <div>Listed by: @listing.User?.Email ?? "N/A"</div>
+                <div>Listed by: @listing.User?.Email</div>
             </div>
         </div>
     </div>
