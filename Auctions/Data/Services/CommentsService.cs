@@ -17,5 +17,21 @@ namespace Auctions.Data.Services
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
         }
+
+        public async Task Delete(int id)
+        {
+            var comment = await _context.Comments.FindAsync(id);
+            if (comment != null)
+            {
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public Task<string?> GetById(int value)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
