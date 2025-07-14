@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Auctions.Data.Services; // Make sure this matches your namespace for ICommentsService
 
+#pragma warning disable CA1050 // Declare types in namespaces
 public class CommentsController : Controller
+#pragma warning restore CA1050 // Declare types in namespaces
 {
     private readonly ICommentsService _commentsService;
 

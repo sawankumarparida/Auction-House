@@ -1,4 +1,5 @@
 ﻿using Auctions.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Auctions.Data.Services
 {
@@ -28,9 +29,12 @@ namespace Auctions.Data.Services
             }
         }
 
-        public Task<string?> GetById(int value)
+        public async Task<Comment?> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Comments
+                .Include(c => c.User)
+                .Include(c => c.Listing)
+                .FirstOrDefaultAsync(c => c.Id == id);
         }
 
     }

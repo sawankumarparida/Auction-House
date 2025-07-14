@@ -114,8 +114,14 @@ else
     <h6>Comments</h6>
     @foreach(var comment in Model.Comments)
     {
-        <div style="border:1px solid lightgray; margin: 10px; padding: 10px; border-radius: 10px; width: 40%;">
+        <div style="border:1px solid lightgray; margin: 70px; padding: 10px; border-radius: 10px; width: 40%;">
             <p>@comment.Content - @comment?.User?.UserName</p>
+            @if (User.Identity.IsAuthenticated && userManager.GetUserId(User) == comment.IdentityUserId)
+            {
+                <form asp-controller="Comments" asp-action="Delete" asp-route-id="@comment.Id" method="get" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            }
         </div>
     }
 </div>

@@ -7,7 +7,7 @@ namespace Auctions.Data.Services
         Task Add(Comment comment);
         Task Delete(int id);
 
-        Task<string?> GetById(int value);
+        Task<Comment?> GetById(int id);
 
     }
 }
