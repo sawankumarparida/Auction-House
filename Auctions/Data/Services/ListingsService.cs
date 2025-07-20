@@ -18,11 +18,6 @@ namespace Auctions.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public Task Delete(Listing listing)
-        {
-            throw new NotImplementedException();
-        }
-
         public IQueryable<Listing> GetAll()
         {
             var applicationDbContext = _context.Listings.Include(l => l.User);
@@ -51,11 +46,6 @@ namespace Auctions.Data.Services
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
-        }
-
-        public Task Update(Listing listing)
-        {
-            throw new NotImplementedException();
         }
     }
 }

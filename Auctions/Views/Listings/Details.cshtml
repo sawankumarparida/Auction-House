@@ -114,11 +114,7 @@ else
     <h6>Comments</h6>
     @foreach(var comment in Model.Comments)
     {
-<<<<<<< HEAD
         <div style="border:1px solid lightgray; margin: 60px; padding: 10px; border-radius: 10px; width: 40%;">
-=======
-        <div style="border:1px solid lightgray; margin: 70px; padding: 10px; border-radius: 10px; width: 40%;">
->>>>>>> b1
             <p>@comment.Content - @comment?.User?.UserName</p>
             @if (User.Identity.IsAuthenticated && userManager.GetUserId(User) == comment.IdentityUserId)
             {
