@@ -134,7 +134,30 @@ namespace Auctions.Controllers
             var listing = await _listingsService.GetById(comment.ListingId);
             return View("Details", listing);
         }
-//
+
+        // GET: Comments/Delete/5
+        public async Task<IActionResult> DeleteComment(int? id)
+        {
+            if (id == null)
+                return NotFound();
+
+            var comment = await _commentsService.GetById(id.Value); // Use id.Value to avoid nullable issues
+            if (comment == null)
+                return NotFound();
+
+            return View(comment); // Show confirmation page
+        }
+
+        // POST: Comments/Delete/5
+        [HttpPost, ActionName("DeleteComment")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteCommentConfirmed(int id)
+        {
+            await _commentsService.Delete(id);
+            return RedirectToAction("Index", "Listings"); // Or wherever you want to redirect
+        }
+
+        //
         // GET: Listings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -160,33 +183,33 @@ namespace Auctions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Price,ImagePath,IsSold,IdentityUserId")] Listing listing)
         {
-           if (id != listing.Id)
-           {
-               return NotFound();
-           }
+            if (id != listing.Id)
+            {
+                return NotFound();
+            }
 
-           if (ModelState.IsValid)
-           {
-               try
-               {
-                   await _listingsService.Update(listing);
-                   await _listingsService.SaveChanges();
-               }
-               catch (DbUpdateConcurrencyException)
-               {
-                   if (!ListingExists(listing.Id))
-                   {
-                       return NotFound();
-                   }
-                   else
-                   {
-                       throw;
-                   }
-               }
-               return RedirectToAction(nameof(Index));
-           }
-           // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", listing.IdentityUserId);
-           return View(listing);
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    await _listingsService.Update(listing);
+                    await _listingsService.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ListingExists(listing.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            // ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id", listing.IdentityUserId);
+            return View(listing);
         }
 
 
@@ -194,20 +217,20 @@ namespace Auctions.Controllers
         // GET: Listings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-           if (id == null)
-           {
-               return NotFound();
-           }
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-           var listing = await _listingsService.GetAll()
-               .Include(l => l.User)
-               .FirstOrDefaultAsync(m => m.Id == id);
-           if (listing == null)
-           {
-               return NotFound();
-           }
+            var listing = await _listingsService.GetAll()
+                .Include(l => l.User)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (listing == null)
+            {
+                return NotFound();
+            }
 
-           return View(listing);
+            return View(listing);
         }
 
         // POST: Listings/Delete/5
@@ -215,13 +238,13 @@ namespace Auctions.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           var listing = await _listingsService.GetById(id);
-           if (listing != null)
-           {
-               await _listingsService.Delete(listing);
-               await _listingsService.SaveChanges();
-           }
-           return RedirectToAction(nameof(Index));
+            var listing = await _listingsService.GetById(id);
+            if (listing != null)
+            {
+                await _listingsService.Delete(listing);
+                await _listingsService.SaveChanges();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         private bool ListingExists(int id)
