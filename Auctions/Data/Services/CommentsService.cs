@@ -3,15 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Auctions.Data.Services
 {
-    public class CommentsService : ICommentsService
+    public class CommentsService(ApplicationDbContext context) : ICommentsService
     {
-        private readonly ApplicationDbContext _context;
-
-        public CommentsService(ApplicationDbContext context)
-        {
-            _context = context;
-        }
-
+        private readonly ApplicationDbContext _context = context;
 
         public async Task Add(Comment comment)
         {
@@ -37,5 +31,9 @@ namespace Auctions.Data.Services
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
+        public Task<string?> GetById(object value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

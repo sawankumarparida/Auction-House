@@ -124,8 +124,11 @@ namespace Auctions.Controllers
             await _listingsService.SaveChanges();
             return View("Details", listing);
         }
-        [HttpPost]
-        public async Task<ActionResult> AddComment([Bind("Id, Content, ListingId, IdentityUserId")] Comment comment)
+        // GET: Comments/Create
+#pragma warning disable ASP0023 // Route conflict detected between controller actions
+        [HttpPost("{id}"), ActionName("AddComment")]
+#pragma warning restore ASP0023 // Route conflict detected between controller actions
+        public async Task<ActionResult> AddComment(string id, [Bind("Id, Content, ListingId, IdentityUserId")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -136,12 +139,14 @@ namespace Auctions.Controllers
         }
 
         // GET: Comments/Delete/5
-        public async Task<IActionResult> DeleteComment(int? id)
+        public async Task<IActionResult> DeleteComment(int id)
         {
+#pragma warning disable CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
             if (id == null)
                 return NotFound();
+#pragma warning restore CS0472 // The result of the expression is always the same since a value of this type is never equal to 'null'
 
-            var comment = await _commentsService.GetById(id.Value); // Use id.Value to avoid nullable issues
+            var comment = await _commentsService.GetById(id); // id is already int, no need for .Value
             if (comment == null)
                 return NotFound();
 
@@ -149,7 +154,9 @@ namespace Auctions.Controllers
         }
 
         // POST: Comments/Delete/5
-        [HttpPost, ActionName("DeleteComment")]
+#pragma warning disable ASP0023 // Route conflict detected between controller actions
+        [HttpPost("{id}"), ActionName("DeleteComment")]
+#pragma warning restore ASP0023 // Route conflict detected between controller actions
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteCommentConfirmed(int id)
         {

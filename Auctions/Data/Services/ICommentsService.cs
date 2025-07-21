@@ -8,6 +8,6 @@ namespace Auctions.Data.Services
         Task Delete(int id);
 
         Task<Comment?> GetById(int id);
-
+        Task<string?> GetById(object value);
     }
 }
