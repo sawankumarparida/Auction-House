@@ -53,7 +53,7 @@
                 <br>
                 @if(userManager.GetUserId(User) == Model?.User?.Id)
                 {
-                    @foreach(var bid in Model.Bids)
+                    @foreach(var bid in Model?.Bids!)
                     {
                         <ul style="list-style-type: none;">
                             @bid.User?.UserName bidded $@bid.Price.ToString("N2").
