@@ -20,7 +20,7 @@
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Listings" asp-action="Index"><i class="fa fa-solid fa-house"></i> Active Listings</a>
                         </li>
-                        @if(User.Identity.IsAuthenticated?)
+                        @if(User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
                                 <a class="nav-link " asp-area="" asp-controller="Listings" asp-action="Create"><i class="fa fa-solid fa-plus"></i> Create Listing</a>
