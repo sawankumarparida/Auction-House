@@ -58,7 +58,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #bdbdbd;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #303030;
 }
 
 html {
@@ -68,12 +68,12 @@ html {
 
 body {
   padding-top: 70px;
-  background-color: rgb(86, 86, 86);
+  background-color: rgb(43, 43, 43);
 }
 
 .nav{
-    background-color: rgba(39, 38, 38, 0.6);
-    border: 1px solid rgb(124, 124, 124); 
+    background-color: rgba(36, 36, 36, 0.6);
+    border: 1px solid rgb(36, 36, 36); 
 }
 
 .nav-link{
@@ -90,7 +90,7 @@ body {
   padding-top: 7px;
   z-index: 999;
     position: fixed;
-    background-color: #656565;
+    background-color: #2f2f2f;
 }
 
 .container{
