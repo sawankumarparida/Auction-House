@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using Auctions.Data.Services;
 using Auctions.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -68,6 +69,7 @@ namespace Auctions.Controllers
         }
 
         // GET: Listings/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -77,6 +79,7 @@ namespace Auctions.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ListingVM listing)
         {
